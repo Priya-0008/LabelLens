@@ -1,0 +1,112 @@
+/* Custom Styling & Interactivity */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* SVG Bounding Box Overlays */
+.bbox-rect {
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.bbox-rect.field-detected {
+  stroke: #10b981; /* Emerald */
+  fill: rgba(16, 185, 129, 0.18);
+}
+
+.bbox-rect.field-detected:hover,
+.bbox-rect.field-detected.active-highlight {
+  stroke: #34d399;
+  fill: rgba(16, 185, 129, 0.42);
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
+}
+
+.bbox-rect.ocr-block {
+  stroke: #6366f1; /* Indigo */
+  fill: rgba(99, 102, 241, 0.08);
+}
+
+.bbox-rect.ocr-block:hover,
+.bbox-rect.ocr-block.active-highlight {
+  stroke: #818cf8;
+  fill: rgba(99, 102, 241, 0.32);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.5));
+}
+
+.bbox-rect.low-confidence {
+  stroke: #f59e0b; /* Amber */
+  fill: rgba(245, 158, 11, 0.16);
+}
+
+.bbox-rect.low-confidence:hover,
+.bbox-rect.low-confidence.active-highlight {
+  stroke: #fbbf24;
+  fill: rgba(245, 158, 11, 0.38);
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.6));
+}
+
+/* Field Card Active State */
+.field-card {
+  transition: all 0.2s ease-in-out;
+}
+
+.field-card.active-card {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 15px -3px rgba(99, 102, 241, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Product Type Selection Styles */
+.product-type-card {
+  transition: all 0.2s ease;
+}
+
+.product-type-card.selected {
+  border-color: #6366f1;
+  background-color: rgba(99, 102, 241, 0.12);
+}
+
+/* Drag and Drop Dragover */
+.drag-over {
+  border-color: #6366f1 !important;
+  background-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+/* Loading animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}

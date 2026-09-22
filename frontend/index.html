@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LabelLens | Legal Metrology Compliance</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: {
+              teal: '#14b8a6',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen flex flex-col font-sans bg-slate-950 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-teal-400 p-0.5 shadow-lg shadow-indigo-500/20 flex items-center justify-center">
+          <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+            <i data-lucide="scale" class="w-5 h-5 text-indigo-400"></i>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <span class="font-bold text-base tracking-tight text-white">Label<span class="text-indigo-400">Lens</span></span>
+            <span class="px-2 py-0.5 text-[10px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 rounded-full">SIH26034</span>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block">Legal Metrology (Packaged Commodities) Rules, 2011 Automated Verification</p>
+        </div>
+      </div>
+
+      <!-- Header actions & product type quick badge -->
+      <div class="flex items-center space-x-4">
+        <div id="backendStatusBadge" class="flex items-center space-x-2 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-medium">PP-OCRv4 Active</span>
+        </div>
+        <a href="#auditBreakdownSection" id="jumpToResultsBtn" class="hidden text-xs font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
+          View Results &rarr;
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
+    <!-- Hero / Intro Banner -->
+    <div class="relative overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8">
+      <div class="absolute -right-16 -top-16 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="relative z-10 max-w-3xl space-y-3">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-xs text-slate-300">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-teal-400"></i>
+          <span>Rule 6 Compliance Engine &bull; Zero Hardcoding</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          Automated Packaged Commodity Compliance Verification
+        </h1>
+        <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
+          Upload product packaging photos (front, back, MRP sticker) or provide an e-commerce URL. Our PP-OCRv4 AI pipeline extracts, validates SI units, MRP declarations, dates, and mandatory legal declarations against the Legal Metrology Rules, 2011.
+        </p>
+      </div>
+    </div>
+
+    <!-- Input Section: Dual Tab (Upload / URL) + Product Type Toggle -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left: Product Type Selection & Rules Reference (4 cols) -->
+      <div class="lg:col-span-4 space-y-6">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-5">
+          <div class="flex items-center space-x-2 pb-3 border-b border-slate-800">
+            <i data-lucide="layers" class="w-5 h-5 text-indigo-400"></i>
+            <h2 class="text-sm font-bold text-white uppercase tracking-wider">1. Select Product Category</h2>
+          </div>
+
+          <div class="space-y-3">
+            <label class="text-xs text-slate-400 block font-medium">Regulation Framework Mode</label>
+            <div class="grid grid-cols-1 gap-2.5">
+              <!-- Option 1: General Commodity -->
+              <label class="product-type-card relative flex items-start p-3.5 rounded-xl border border-indigo-500/40 bg-indigo-500/10 cursor-pointer transition-all hover:border-indigo-500">
+                <input type="radio" name="productType" value="general" checked class="mt-0.5 text-indigo-600 focus:ring-indigo-500">
+                <div class="ml-3">
+                  <span class="block text-sm font-semibold text-white">General Packaged Commodity</span>
+                  <span class="block text-xs text-slate-400 mt-0.5">FMCG, Food, Cosmetics, Electronics, Household items</span>
+                  <span class="inline-block mt-2 text-[11px] px-2 py-0.5 rounded bg-slate-800 text-indigo-300 font-mono">LM Rules 2011 (Rule 6)</span>
+                </div>
+              </label>
+
+              <!-- Option 2: Medicine / Pharma -->
+              <label class="product-type-card relative flex items-start p-3.5 rounded-xl border border-slate-800 bg-slate-900 cursor-pointer transition-all hover:border-slate-700">
+                <input type="radio" name="productType" value="medicine" class="mt-0.5 text-indigo-600 focus:ring-indigo-500">
+                <div class="ml-3">
+                  <span class="block text-sm font-semibold text-white">Medicine / Pharmaceutical</span>
+                  <span class="block text-xs text-slate-400 mt-0.5">Tablets, Syrups, Injections, Medical Devices, Ointments</span>
+                  <span class="inline-block mt-2 text-[11px] px-2 py-0.5 rounded bg-slate-800 text-teal-300 font-mono">+ Batch, Lic, Exp, Composition</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Dynamic Checklist Preview -->
+          <div class="pt-2">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="font-medium">Mandatory Checklist:</span>
+              <span id="checklistCountBadge" class="text-indigo-400 font-mono">6 fields</span>
+            </div>
+            <div id="mandatoryPillsContainer" class="flex flex-wrap gap-1.5 text-[11px]">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="rounded-2xl border border-slate-800/80 bg-slate-900/40 p-5 space-y-3">
+          <div class="flex items-center space-x-2 text-xs font-semibold text-slate-300">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+            <span>Intelligent Preprocessing Pipeline</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Every image runs through CLAHE illumination correction, deskew/rotation alignment, and edge-preserving bilateral denoising to read crumpled, glossy, or low-resolution labels accurately.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Dual Input Tabs (8 cols) -->
+      <div class="lg:col-span-8">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-6">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div class="flex items-center space-x-2">
+              <i data-lucide="scan" class="w-5 h-5 text-teal-400"></i>
+              <h2 class="text-sm font-bold text-white uppercase tracking-wider">2. Provide Product Input</h2>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="flex p-1 bg-slate-950 rounded-xl border border-slate-800 text-xs font-semibold">
+              <button id="tabUploadBtn" class="px-3.5 py-1.5 rounded-lg bg-indigo-600 text-white shadow transition-all flex items-center space-x-1.5">
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                <span>Image / PDF Upload</span>
+              </button>
+              <button id="tabUrlBtn" class="px-3.5 py-1.5 rounded-lg text-slate-400 hover:text-slate-200 transition-all flex items-center space-x-1.5">
+                <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+                <span>URL Fetch</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 1: File Upload Panel -->
+          <div id="panelUpload" class="space-y-4">
+            <div id="dropzone" class="border-2 border-dashed border-slate-700 hover:border-indigo-500/70 bg-slate-950/60 hover:bg-indigo-950/10 rounded-2xl p-8 text-center transition-all cursor-pointer group">
+              <input type="file" id="fileInput" multiple accept="image/*,application/pdf" class="hidden">
+              <div class="flex flex-col items-center justify-center space-y-3">
+                <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <i data-lucide="image-plus" class="w-7 h-7 text-indigo-400"></i>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-white">Click or Drag & Drop product label photos</p>
+                  <p class="text-xs text-slate-400 mt-1">Upload multiple photos (front, back, MRP sticker) or multi-page label PDF</p>
+                </div>
+                <div class="flex items-center space-x-2 text-[11px] text-slate-500 font-mono">
+                  <span>JPG</span> &bull; <span>PNG</span> &bull; <span>WEBP</span> &bull; <span>PDF</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upload Previews -->
+            <div id="selectedFilesPreview" class="hidden space-y-3">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                <span id="selectedCountText">Selected 0 files</span>
+                <button id="clearFilesBtn" class="text-rose-400 hover:text-rose-300 transition-colors">Clear all</button>
+              </div>
+              <div id="thumbnailContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <!-- Preview thumbs injected by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: URL Input Panel -->
+          <div id="panelUrl" class="hidden space-y-4">
+            <div class="space-y-3">
+              <label class="block text-xs font-semibold text-slate-300">Product Page URL or Direct Image URL</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i data-lucide="link-2" class="w-4 h-4"></i>
+                </div>
+                <input type="text" id="urlInput" placeholder="Paste URL here (Ctrl + V)" 
+                  class="w-full pl-10 pr-4 py-3 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors font-mono">
+              </div>
+              <p class="text-xs text-slate-400">
+                Supports e-commerce product pages (Amazon, Flipkart, Blinkit, etc.) or direct image URLs. Images will be fetched and validated server-side.
+              </p>
+
+              <!-- Quick Demo Samples -->
+              <div class="space-y-1.5 pt-1">
+                <span class="text-[11px] font-semibold text-slate-400">Or click a sample link to auto-fill:</span>
+                <div class="flex flex-wrap gap-2">
+                  <button type="button" onclick="setSampleUrl('https://m.media-amazon.com/images/I/71o8q6BqJGL._SL1500_.jpg', 'general')" class="px-2.5 py-1 text-[11px] rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white border border-slate-700 transition-all">
+                    🛒 FMCG Food Product (Amazon)
+                  </button>
+                  <button type="button" onclick="setSampleUrl('https://m.media-amazon.com/images/I/61r5fO2pG9L._SL1200_.jpg', 'general')" class="px-2.5 py-1 text-[11px] rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white border border-slate-700 transition-all">
+                    🧴 Personal Care / Cosmetic (Amazon)
+                  </button>
+                  <button type="button" onclick="setSampleUrl('https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=900', 'medicine')" class="px-2.5 py-1 text-[11px] rounded-lg bg-slate-800 hover:bg-teal-600 text-slate-300 hover:text-white border border-slate-700 transition-all">
+                    💊 Medicine Packaging (Pharma)
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div class="pt-2">
+            <button id="runAnalysisBtn" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-teal-500 hover:from-indigo-500 hover:to-teal-400 text-white font-bold text-sm shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed">
+              <i data-lucide="scan-text" class="w-5 h-5"></i>
+              <span>Run Legal Metrology Verification</span>
+            </button>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div id="errorAlert" class="hidden p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start space-x-3">
+            <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-400 flex-shrink-0 mt-0.5"></i>
+            <div class="space-y-1">
+              <p class="font-bold text-rose-200" id="errorTitle">Verification Error</p>
+              <p id="errorMessage">An unexpected error occurred.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Processing / Loading State -->
+    <div id="loadingSection" class="hidden py-12">
+      <div class="max-w-md mx-auto rounded-2xl border border-slate-800 bg-slate-900/80 p-8 text-center space-y-6">
+        <div class="relative w-20 h-20 mx-auto">
+          <div class="absolute inset-0 rounded-full border-4 border-indigo-500/20 animate-ping"></div>
+          <div class="w-full h-full rounded-full border-4 border-t-indigo-500 border-r-teal-400 border-b-indigo-500/10 border-l-indigo-500/10 animate-spin"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <i data-lucide="cpu" class="w-8 h-8 text-indigo-400"></i>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="text-base font-bold text-white" id="loadingTitle">Processing Packaging Images</h3>
+          <p class="text-xs text-slate-400" id="loadingSubtitle">Running CLAHE enhancement, PP-OCRv4 text detection, and rule engine...</p>
+        </div>
+
+        <div class="space-y-2 text-left text-xs text-slate-300 bg-slate-950 p-3.5 rounded-xl border border-slate-800 font-mono">
+          <div class="flex items-center space-x-2 text-teal-400">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+            <span>Image Preprocessing (Deskew & CLAHE)</span>
+          </div>
+          <div class="flex items-center space-x-2 text-indigo-400">
+            <span class="w-3.5 h-3.5 rounded-full border-2 border-indigo-400 border-t-transparent animate-spin inline-block"></span>
+            <span>PP-OCRv4 Multi-Angle Text Extraction</span>
+          </div>
+          <div class="flex items-center space-x-2 text-slate-500">
+            <i data-lucide="circle" class="w-3.5 h-3.5"></i>
+            <span>Fuzzy Synonym Mapping & Rule Verification</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section (Visible after analysis) -->
+    <div id="resultsSection" class="hidden space-y-8">
+      
+      <!-- Section 1: Executive Compliance Scorecard -->
+      <div class="rounded-2xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-800">
+          <div>
+            <span class="text-xs font-mono text-indigo-400 uppercase tracking-wider">Compliance Audit Result</span>
+            <h2 class="text-2xl font-black text-white mt-1" id="overallStatusHeading">COMPLIANT</h2>
+            <p class="text-xs text-slate-400 mt-1" id="statusSummaryText">Verified against Legal Metrology (Packaged Commodities) Rules, 2011</p>
+          </div>
+
+          <!-- Report Export Buttons -->
+          <div class="flex items-center space-x-3">
+            <button id="downloadPdfBtn" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors flex items-center space-x-2 shadow-lg shadow-indigo-600/20">
+              <i data-lucide="file-down" class="w-4 h-4"></i>
+              <span>Export PDF Report</span>
+            </button>
+            <button id="downloadJsonBtn" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-colors flex items-center space-x-2 border border-slate-700">
+              <i data-lucide="code" class="w-4 h-4"></i>
+              <span>Export JSON</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+          <!-- Score Circle -->
+          <div class="col-span-2 sm:col-span-1 rounded-xl bg-slate-950/80 border border-slate-800 p-4 flex flex-col items-center justify-center text-center">
+            <div class="relative w-20 h-20">
+              <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                <path class="text-slate-800" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                <path id="scoreCirclePath" class="text-indigo-500 transition-all duration-1000" stroke-dasharray="100, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center flex-col">
+                <span id="scorePercentText" class="text-lg font-black text-white">100%</span>
+                <span class="text-[9px] text-slate-400 uppercase font-mono">Score</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Mandatory -->
+          <div class="rounded-xl bg-slate-950/80 border border-slate-800 p-4 flex flex-col justify-between">
+            <span class="text-xs text-slate-400 font-medium">Mandatory Checked</span>
+            <span id="metricTotalMandatory" class="text-2xl font-bold text-white">6</span>
+            <span class="text-[10px] text-slate-500">Legal Rule 6 declarations</span>
+          </div>
+
+          <!-- Passed -->
+          <div class="rounded-xl bg-emerald-500/5 border border-emerald-500/20 p-4 flex flex-col justify-between">
+            <span class="text-xs text-emerald-400 font-medium">Passed Fields</span>
+            <span id="metricPassed" class="text-2xl font-bold text-emerald-400">6</span>
+            <span class="text-[10px] text-emerald-500/80">Valid format & SI units</span>
+          </div>
+
+          <!-- Failed / Missing -->
+          <div class="rounded-xl bg-rose-500/5 border border-rose-500/20 p-4 flex flex-col justify-between">
+            <span class="text-xs text-rose-400 font-medium">Missing / Non-Compliant</span>
+            <span id="metricFailed" class="text-2xl font-bold text-rose-400">0</span>
+            <span class="text-[10px] text-rose-500/80">Missing from packaging</span>
+          </div>
+
+          <!-- OCR Low Confidence -->
+          <div class="rounded-xl bg-amber-500/5 border border-amber-500/20 p-4 flex flex-col justify-between">
+            <span class="text-xs text-amber-400 font-medium">Low Confidence OCR</span>
+            <span id="metricUnreadable" class="text-2xl font-bold text-amber-400">0</span>
+            <span class="text-[10px] text-amber-500/80">Needs clearer photo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Interactive Packaging Visualizer (Canvas & Bounding Boxes) -->
+      <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="eye" class="w-5 h-5 text-teal-400"></i>
+            <h3 class="text-sm font-bold text-white uppercase tracking-wider">Interactive Label Bounding Box Visualizer</h3>
+          </div>
+          
+          <!-- Image Tab Switcher (if multi-image) -->
+          <div id="imageTabsContainer" class="flex items-center space-x-2 overflow-x-auto pb-1">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Image Canvas Container (8 cols) -->
+          <div class="lg:col-span-8 space-y-2">
+            <div class="relative w-full bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex items-center justify-center min-h-[420px] max-h-[640px] p-2">
+              <div id="canvasWrapper" class="relative inline-block max-w-full max-h-[600px] overflow-hidden rounded-lg">
+                <img id="displayPackagingImg" src="" alt="Packaging Inspection" class="max-w-full max-h-[600px] object-contain block select-none">
+                <!-- SVG Overlay for Bounding Boxes -->
+                <svg id="bboxSvgOverlay" class="absolute inset-0 w-full h-full pointer-events-auto"></svg>
+              </div>
+            </div>
+            
+            <div class="flex items-center justify-between text-xs text-slate-500 px-1 font-mono">
+              <div class="flex items-center space-x-3">
+                <span class="flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded bg-emerald-500 inline-block"></span> <span>Detected Field</span></span>
+                <span class="flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded bg-indigo-500 inline-block"></span> <span>OCR Text Block</span></span>
+                <span class="flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded bg-amber-500 inline-block"></span> <span>Low Confidence</span></span>
+              </div>
+              <span>Click or hover bounding boxes to inspect</span>
+            </div>
+          </div>
+
+          <!-- Right: Box Inspector Details (4 cols) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="rounded-xl bg-slate-950 border border-slate-800 p-4 space-y-3">
+              <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-1.5">
+                <i data-lucide="focus" class="w-4 h-4 text-indigo-400"></i>
+                <span>Selected Region Inspector</span>
+              </h4>
+              
+              <div id="inspectorEmptyState" class="py-12 text-center text-xs text-slate-500 space-y-2">
+                <i data-lucide="mouse-pointer-click" class="w-6 h-6 mx-auto text-slate-600"></i>
+                <p>Hover over or click any field from the results table or image box to inspect its extracted text & coordinates.</p>
+              </div>
+
+              <div id="inspectorDetails" class="hidden space-y-3 text-xs">
+                <div>
+                  <span class="text-[10px] text-slate-500 uppercase font-mono">Field Name</span>
+                  <p id="inspFieldName" class="font-bold text-white text-sm">Net Quantity</p>
+                </div>
+
+                <div>
+                  <span class="text-[10px] text-slate-500 uppercase font-mono">Extracted Value</span>
+                  <div id="inspExtractedVal" class="font-mono text-indigo-300 bg-slate-900 p-2 rounded border border-slate-800 break-words mt-1">
+                    500 g
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <span class="text-[10px] text-slate-500 uppercase font-mono">Matched Synonym</span>
+                    <p id="inspSynonym" class="font-medium text-slate-200">Net Wt.</p>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-slate-500 uppercase font-mono">OCR Confidence</span>
+                    <p id="inspConfidence" class="font-medium text-emerald-400 font-mono">98.5%</p>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="text-[10px] text-slate-500 uppercase font-mono">Legal Rule Reference</span>
+                  <p id="inspLegalRule" class="text-[11px] text-slate-400 mt-0.5">Rule 6(1)(d) - Net Quantity in SI Units</p>
+                </div>
+
+                <div>
+                  <span class="text-[10px] text-slate-500 uppercase font-mono">Validation Result</span>
+                  <p id="inspValidationMsg" class="text-[11px] text-emerald-300 bg-emerald-500/10 p-2 rounded border border-emerald-500/20 mt-1">
+                    Valid SI unit and numeral format.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- OCR Full Transcript Collapse -->
+            <div class="rounded-xl bg-slate-950 border border-slate-800 p-4 space-y-2">
+              <button id="toggleRawOcrBtn" class="w-full flex items-center justify-between text-xs font-semibold text-slate-300 hover:text-white transition-colors">
+                <span>View Full Raw OCR Transcript</span>
+                <i data-lucide="chevron-down" id="rawOcrChevron" class="w-4 h-4 transition-transform"></i>
+              </button>
+              <div id="rawOcrContainer" class="hidden pt-2">
+                <textarea id="rawOcrTextarea" readonly rows="7" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-[11px] font-mono text-slate-300 focus:outline-none resize-none"></textarea>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section 3: Field-by-Field Compliance Verification Table & Cards -->
+      <div id="auditBreakdownSection" class="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+          <div>
+            <h3 class="text-base font-bold text-white">Mandatory Declarations Audit Breakdown</h3>
+            <p class="text-xs text-slate-400 mt-0.5">Comprehensive per-field legal evaluation and remediation recommendations</p>
+          </div>
+
+          <!-- Status Filter -->
+          <div class="flex items-center space-x-1.5 text-xs">
+            <button class="filter-btn px-3 py-1 rounded-lg bg-indigo-600 text-white font-medium" data-filter="all">All</button>
+            <button class="filter-btn px-3 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white font-medium" data-filter="PASS">Pass</button>
+            <button class="filter-btn px-3 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white font-medium" data-filter="FAIL">Fail / Missing</button>
+            <button class="filter-btn px-3 py-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white font-medium" data-filter="UNREADABLE">Unreadable</button>
+          </div>
+        </div>
+
+        <!-- Field Cards Container -->
+        <div id="fieldCardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Injected dynamically by JS -->
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-slate-950 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>Smart India Hackathon SIH26034 &bull; Legal Metrology (Packaged Commodities) Compliance System</p>
+      <p class="font-mono text-[11px]">PP-OCRv4 &bull; FastAPI Backend (:8088) &bull; Frontend (:5188)</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
