@@ -1,5 +1,5 @@
 // Legal Metrology Compliance App (SIH26034)
-const API_BASE = "http://localhost:8088";
+const API_BASE = "";
 
 // App State
 const state = {

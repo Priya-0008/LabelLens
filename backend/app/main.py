@@ -155,6 +155,12 @@ def export_pdf(req: ExportPDFRequest):
         raise HTTPException(status_code=500, detail=f"PDF Generation failed: {str(e)}")
 
 
+# Serve frontend statically so it all runs on one port for cloud deployment
+import pathlib
+BASE_DIR = pathlib.Path(__file__).resolve().parent.parent.parent
+frontend_dir = BASE_DIR / "frontend"
+app.mount("/", StaticFiles(directory=str(frontend_dir), html=True), name="frontend")
+
 def _process_images_pipeline(
     images: List[np.ndarray],
     product_type: str,
