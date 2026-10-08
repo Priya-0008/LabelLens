@@ -1,4 +1,6 @@
-# Legal Metrology (Packaged Commodities) Compliance Checker - SIH26034
+# LabelLens - Legal Metrology Compliance Checker (SIH26034)
+
+🚀 **[Live Demo Available Here](https://labellens-1-alm0.onrender.com)**
 
 Automated software system for scanning product packaging labels, images, and e-commerce URLs to verify compliance under the **Legal Metrology (Packaged Commodities) Rules, 2011** and **Drugs and Cosmetics Rules, 1945**.
 
